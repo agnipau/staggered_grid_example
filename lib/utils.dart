@@ -1,5 +1,5 @@
-extension Max on List<num> {
-  num maxOrNull() {
+extension Max<T extends num> on List<T> {
+  T maxOrNull() {
     if (isEmpty) {
       return null;
     }
