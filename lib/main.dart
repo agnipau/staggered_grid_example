@@ -159,7 +159,7 @@ class RenderStaggeredGrid extends RenderBox
     }
   }
 
-  double _getIntrinsicHeight(double childSize(final RenderBox child)) {
+  double _getIntrinsicHeight(double Function(RenderBox child) childSize) {
     var idx = 0;
     final yOffsets = List<double>(numColumns)
         .map((_) => outerPadding.top)
@@ -179,7 +179,7 @@ class RenderStaggeredGrid extends RenderBox
     return yOffsets.maxOrNull() + outerPadding.bottom;
   }
 
-  double _getIntrinsicWidth(double childSize(final RenderBox child)) {
+  double _getIntrinsicWidth(double Function(RenderBox child) childSize) {
     var idx = 0;
     var xOffsets = List<double>(numRows).map((_) => outerPadding.left).toList(
           growable: false,
