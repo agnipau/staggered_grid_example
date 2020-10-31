@@ -181,7 +181,7 @@ class RenderStaggeredGrid extends RenderBox
 
   double _getIntrinsicWidth(double childSize(final RenderBox child)) {
     var idx = 0;
-    var xOffsets = List(numRows).map((_) => outerPadding.left).toList(
+    var xOffsets = List<double>(numRows).map((_) => outerPadding.left).toList(
           growable: false,
         );
     var child = firstChild;
