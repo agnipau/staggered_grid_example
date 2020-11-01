@@ -235,17 +235,16 @@ class RenderStaggeredGrid extends RenderBox
   @override
   void performLayout() {
     if (childCount == 0) {
-      size = constraints.biggest;
-      assert(size.isFinite);
+      size = Size.zero;
       return;
     }
 
-    final newConstraints = constraints.tighten(
-      width: constraints.maxWidth - (outerPadding.left + outerPadding.right),
-      height: constraints.maxHeight - (outerPadding.top + outerPadding.bottom),
-    );
-    final viableWidth =
-        newConstraints.maxWidth - (innerPadding * (numColumns - 1));
+    var viableWidth =
+        constraints.maxWidth - (outerPadding.left + outerPadding.right);
+    if (viableWidth < 0) {
+      viableWidth = 0;
+    }
+    viableWidth -= innerPadding * (numColumns - 1);
 
     var child = firstChild;
     var idx = 0;
@@ -277,7 +276,7 @@ class RenderStaggeredGrid extends RenderBox
 
     final maxHeight = yOffsets.maxOrNull();
     size = Size(
-      constraints.maxWidth - outerPadding.right,
+      constraints.maxWidth,
       maxHeight + outerPadding.bottom,
     );
   }
